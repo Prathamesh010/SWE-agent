@@ -6,6 +6,9 @@ import "../static/envMessage.css";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import bash from "react-syntax-highlighter/dist/esm/languages/prism/bash";
 import { prism } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Button } from "react-bootstrap";
+import { Clipboard } from "react-bootstrap-icons";
+import { copyToClipboard } from "./utils/utils";
 
 // SyntaxHighlighter.registerLanguage('bash', bash);
 
@@ -73,6 +76,17 @@ const EnvMessage = ({
         >
           {item.message}
         </SyntaxHighlighter>
+        <div
+          style={{ display: "flex", justifyContent: "center", width: "100%" }}
+        >
+          <Button
+            variant="light"
+            onClick={copyToClipboard(item.message)}
+            style={{ marginBottom: 20, marginRight: 20 }}
+          >
+            <Clipboard /> Copy to clipboard
+          </Button>
+        </div>
       </div>
     );
   } else {

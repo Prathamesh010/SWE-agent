@@ -3,25 +3,12 @@ import workspaceLogo from "../../assets/panel_icons/workspace.png";
 import "../../static/logPanel.css";
 import { Button } from "react-bootstrap";
 import { Clipboard } from "react-bootstrap-icons";
+import { copyToClipboard } from "../utils/utils";
 
 const LogPanel = ({ logs, logsRef, isComputing }) => {
-  const copyToClipboard = (text) => {
-    // Create a temporary textarea element
-    const textarea = document.createElement("textarea");
-    textarea.value = text;
-    document.body.appendChild(textarea);
-
-    // Select and copy the text
-    textarea.select();
-    document.execCommand("copy");
-
-    // Clean up
-    document.body.removeChild(textarea);
-  };
-
-  const handleCopy = () => {
+  const handleCopy = async () => {
     const contentToCopy = document.getElementById("logContent").innerText;
-    copyToClipboard(contentToCopy);
+    await copyToClipboard(contentToCopy);
   };
 
   return (
